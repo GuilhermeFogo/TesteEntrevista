@@ -22,12 +22,12 @@ export class HomeComponent implements OnInit {
     this.service = service;
   }
 
-  private teste : Funcionario[] = [
-    new Funcionario({id: 1, nome: "Guilherme",dataNasc: new Date(), email:"gui.fogo17@gmail.com", habilidade: "C#, Angular", sexo: true, ativar: true})
-  ];
+  //private teste : Funcionario[] = [
+  // new Funcionario({id: 1, nome: "Guilherme",dataNasc: new Date(), email:"gui.fogo17@gmail.com", habilidade: "C#, Angular", sexo: true, ativar: true})
+  //];
   ngOnInit(): void {
-    this.datasouce = new MatTableDataSource(this.teste);
-    //this.GetFuncionario();
+    // this.datasouce = new MatTableDataSource(this.teste);
+    this.GetFuncionario();
   }
 
   public OpenDialog() {
@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
       data: null
     }).afterClosed().subscribe(func => {
       this.postFuncionario(func)
-      //this.GetFuncionario();
+      this.GetFuncionario();
 
       console.log(func);
 
@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit {
       data: Funcionario
     }).afterClosed().subscribe(func => {
       this.putFuncionario(func);
-      //this.GetFuncionario();
+      this.GetFuncionario();
 
       console.log(func);
 
