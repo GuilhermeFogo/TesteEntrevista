@@ -13,6 +13,8 @@ namespace AplicacaoTesteAvaliacao.Repository.Interfaces
         void Deletar(Funcionario funcionario);
 
         List<Funcionario> VerTodos();
+
+        Funcionario VerFuncionario(int index);
     }
 
 }

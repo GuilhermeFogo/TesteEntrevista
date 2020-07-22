@@ -140,5 +140,41 @@ namespace AplicacaoTesteAvaliacao.Repository
             }
             return null;
         }
+
+        public Funcionario VerFuncionario(int index)
+        {
+            try
+            {
+                this.conn.Open();
+                string sql = "Select * from Funcionario where id_funcionario = @id";
+
+                var comando = new SqlCommand(sql, this.conn);
+                comando.Parameters.AddWithValue("@id", index);
+                SqlDataReader ler = comando.ExecuteReader();
+
+                if(ler.Read())
+                {
+                    var id = int.Parse(ler["id_funcionario"].ToString());
+                    var nome = ler["nome"].ToString();
+                    var idade = DateTime.Parse(ler["nasc"].ToString());
+                    var email = ler["email"].ToString();
+                    var sexo = bool.Parse(ler["sexo"].ToString());
+                    var hab = ler["habilidade"].ToString();
+                    var ativado = bool.Parse(ler["ativado"].ToString());
+                    var func = new Funcionario(id, nome, idade, email, sexo, hab, ativado);
+                    
+                    return func;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                this.conn.Close();
+            }
+            return null;
+        }
     }
 }

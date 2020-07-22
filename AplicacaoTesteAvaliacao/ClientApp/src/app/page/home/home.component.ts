@@ -22,8 +22,12 @@ export class HomeComponent implements OnInit {
     this.service = service;
   }
 
+  private teste : Funcionario[] = [
+    new Funcionario({id: 1, nome: "Guilherme",dataNasc: new Date(), email:"gui.fogo17@gmail.com", habilidade: "C#, Angular", sexo: true, ativar: true})
+  ];
   ngOnInit(): void {
-    this.GetFuncionario();
+    this.datasouce = new MatTableDataSource(this.teste);
+    //this.GetFuncionario();
   }
 
   public OpenDialog() {
@@ -32,7 +36,7 @@ export class HomeComponent implements OnInit {
       data: null
     }).afterClosed().subscribe(func => {
       this.postFuncionario(func)
-      this.GetFuncionario();
+      //this.GetFuncionario();
 
       console.log(func);
 
@@ -46,7 +50,7 @@ export class HomeComponent implements OnInit {
       data: Funcionario
     }).afterClosed().subscribe(func => {
       this.putFuncionario(func);
-      this.GetFuncionario();
+      //this.GetFuncionario();
 
       console.log(func);
 
@@ -60,8 +64,8 @@ export class HomeComponent implements OnInit {
   public formatDate(item: Date) {
     return item.toLocaleDateString();
   }
-  public deletaFuncionario(Funcionario: Funcionario) {
-    this.deleteFuncionario();
+  public deletaFuncionario(funcionario: Funcionario) {
+    this.deleteFuncionario(funcionario);
   }
 
 
@@ -72,20 +76,20 @@ export class HomeComponent implements OnInit {
     }, error => console.log(error));
   }
 
-  public putFuncionario(Funcionario: Funcionario) {
+  private putFuncionario(Funcionario: Funcionario) {
     this.service.PutFuncionario(Funcionario).subscribe(x => {
       console.log("Atualização realizada com exito");
     }, error => console.error(error))
   }
 
-  public postFuncionario(Funcionario: Funcionario) {
+  private postFuncionario(Funcionario: Funcionario) {
     this.service.PostFuncionario(Funcionario).subscribe(x => {
       console.log("Inserção realizada com exito");
     }, error => console.error(error))
   }
 
-  public deleteFuncionario() {
-    this.service.DeleteFuncionario().subscribe(x => {
+  private deleteFuncionario(funcionario: Funcionario) {
+    this.service.DeleteFuncionario(funcionario).subscribe(x => {
       console.log("Apagou o Funcionario com exito");
     }, error => console.error(error))
   }

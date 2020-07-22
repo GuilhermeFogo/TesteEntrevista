@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Funcionario } from '../modal/funcionario';
 import { environment } from 'src/environments/environment';
+import { strict } from 'assert';
 
 @Injectable({
   providedIn: 'root'
@@ -24,11 +25,12 @@ export class FuncionarioService {
   }
 
   public  PutFuncionario(funcionario: Funcionario): Observable<Funcionario>{
-    return this.http.put<Funcionario>(this.url, funcionario.Id);
+    return this.http.put<Funcionario>(this.url, funcionario);
   }
 
-  public  DeleteFuncionario(): Observable<Funcionario>{
-    return this.http.delete<Funcionario>(this.url);
+  public  DeleteFuncionario(funcionario: Funcionario): Observable<Funcionario>{
+    
+    return this.http.delete<Funcionario>(this.url + funcionario.Id);
   }
   
 }

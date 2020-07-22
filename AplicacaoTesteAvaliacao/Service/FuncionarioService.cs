@@ -17,9 +17,11 @@ namespace AplicacaoTesteAvaliacao.Service
         }
 
 
-        public void Apagar(Funcionario funcionario)
+        public void Apagar(int index)
         {
-            this.repositorioFuncionario.Deletar(funcionario);
+
+            var funcionarioPesquisado = this.repositorioFuncionario.VerFuncionario(index);
+            this.repositorioFuncionario.Deletar(funcionarioPesquisado);
         }
 
         public void Criar(Funcionario funcionario)

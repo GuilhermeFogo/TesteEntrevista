@@ -33,17 +33,17 @@ namespace AplicacaoTesteAvaliacao.Controllers
         }
 
         // PUT api/<FuncionariosController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Funcionario funcionario)
+        [HttpPut()]
+        public void Put([FromBody] Funcionario funcionario)
         {
             this.funcionarioService.Editar(funcionario);
         }
 
         // DELETE api/<FuncionariosController>/5
         [HttpDelete("{id}")]
-        public void Delete(Funcionario func)
+        public void Delete(int id)
         {
-            this.funcionarioService.Apagar(func);
+            this.funcionarioService.Apagar(id);
         }
     }
 }
