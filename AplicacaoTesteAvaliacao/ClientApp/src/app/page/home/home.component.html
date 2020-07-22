@@ -1,0 +1,48 @@
+<button mat-flat-button color="primary" (click)="OpenDialog()">Cadastrar</button>
+
+<table mat-table [dataSource]="datasouce" class="w-100">
+  <ng-container matColumnDef="Nome">
+    <th mat-header-cell *matHeaderCellDef> Nome </th>
+    <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+  </ng-container>
+  <ng-container matColumnDef="Data Nasc">
+    <th mat-header-cell *matHeaderCellDef> Data Nascimento </th>
+    <td mat-cell *matCellDef="let element"> {{formatDate(element.DataNasc)}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Idade">
+    <th mat-header-cell *matHeaderCellDef> Idade </th>
+    <td mat-cell *matCellDef="let element"> {{CalculateIdade(element.DataNasc)}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Email">
+    <th mat-header-cell *matHeaderCellDef> Email </th>
+    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Sexo">
+    <th mat-header-cell *matHeaderCellDef> Sexo </th>
+    <td mat-cell *matCellDef="let element"> {{element.Sexo ==true? 'Masculino': 'Feminino'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Habilidade">
+    <th mat-header-cell *matHeaderCellDef> Habilidade </th>
+    <td mat-cell *matCellDef="let element"> {{element.Habilidade}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Opcoes">
+    <th mat-header-cell *matHeaderCellDef> Ativar/Desativar </th>
+    <td mat-cell *matCellDef="let element"> {{element.Ativado == true? 'Ativado': 'Desativado'}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Edit">
+    <th mat-header-cell *matHeaderCellDef> Ações </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-flat-button (click)="EditDialog(element)">Editar</button>
+      <button mat-flat-button color="warn" (click)="deletaFuncionario(element)">Deletar</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
